@@ -1,5 +1,6 @@
 package com.crud.tasks.controller;
 
+import com.crud.tasks.domain.Task;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
@@ -32,7 +33,7 @@ public class TaskController {
 
     @DeleteMapping(value = "deleteTask")
     public void deleteTask(@RequestParam Long taskId) {
-        taskMapper.mapToTaskDto(dbService.deleteTask(taskId));
+        dbService.deleteTask(taskId);
     }
 
     @PutMapping(value = "updateTask")
@@ -41,7 +42,7 @@ public class TaskController {
     }
 
     @PostMapping(value = "createTask", consumes = APPLICATION_JSON_VALUE)
-    public void createTask(@RequestBody TaskDto taskDto) {
-        dbService.saveTask(taskMapper.mapToTask(taskDto));
+    public Task createTask(@RequestBody TaskDto taskDto) {
+        return dbService.saveTask(taskMapper.mapToTask(taskDto));
     }
 }
