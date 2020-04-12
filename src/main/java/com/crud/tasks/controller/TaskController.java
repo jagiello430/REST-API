@@ -5,7 +5,6 @@ import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,13 +30,13 @@ public class TaskController {
         return taskMapper.mapToTaskDto(dbService.getTaskById(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
-    @DeleteMapping(value = "deleteTask")
-    public void deleteTask(@RequestParam Long taskId) {
+    @DeleteMapping(value = "deleteTask", consumes = APPLICATION_JSON_VALUE)
+    public void deleteTask(@PathVariable Long taskId){
         dbService.deleteTask(taskId);
     }
 
     @PutMapping(value = "updateTask")
-    public TaskDto updateTask(TaskDto task) {
+    public TaskDto updateTask(@RequestBody TaskDto task) {
         return taskMapper.mapToTaskDto(dbService.saveTask(taskMapper.mapToTask(task)));
     }
 

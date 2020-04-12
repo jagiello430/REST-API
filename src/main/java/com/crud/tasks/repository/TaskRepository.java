@@ -19,5 +19,5 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
     Optional<Task> findById(@Param("Id") long id);
 
     @Query
-    Task deleteTaskById(@Param("Id") long id);
+    Optional<Task> deleteById(@Param("ID") long id);
 }
