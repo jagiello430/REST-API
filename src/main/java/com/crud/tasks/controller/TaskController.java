@@ -30,7 +30,7 @@ public class TaskController {
         return taskMapper.mapToTaskDto(dbService.getTaskById(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
-    @DeleteMapping(value = "deleteTask", consumes = APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "deleteTask")
     public void deleteTask(@PathVariable Long taskId){
         dbService.deleteTask(taskId);
     }
