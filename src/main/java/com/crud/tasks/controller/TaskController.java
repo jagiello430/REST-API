@@ -31,7 +31,7 @@ public class TaskController {
     }
 
     @DeleteMapping(value = "deleteTask")
-    public void deleteTask(@PathVariable Long taskId){
+    public void deleteTask(@RequestParam Long taskId){
         dbService.deleteTask(taskId);
     }
 
