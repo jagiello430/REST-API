@@ -36,8 +36,8 @@ public class TaskController {
     }
 
     @PutMapping(value = "updateTask")
-    public TaskDto updateTask(@RequestBody TaskDto task) {
-        return taskMapper.mapToTaskDto(dbService.saveTask(taskMapper.mapToTask(task)));
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
+        return taskMapper.mapToTaskDto(dbService.saveTask(taskMapper.mapToTask(taskDto)));
     }
 
     @PostMapping(value = "createTask", consumes = APPLICATION_JSON_VALUE)
